@@ -5,18 +5,20 @@ export default function UserForm({ addContact }) {
     name: "",
     email: "",
     phonenumber: "",
+    checkbox: "",
   });
 
   const interestChecklist = ["React", "VueJS", "Angular", "Laravel"];
 
   const handleChange = (event) => {
     setContactInfo({ ...contactInfo, [event.target.name]: event.target.value });
+    console.log(event.target.checked);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addContact(contactInfo);
-    setContactInfo({ name: "", email: "", phonenumber: "" });
+    setContactInfo({ name: "", email: "", phonenumber: "", checkbox: "" });
   };
 
   return (
@@ -94,7 +96,8 @@ export default function UserForm({ addContact }) {
                   <input
                     id="inline-checked-checkbox"
                     type="checkbox"
-                    value=""
+                    value={checklist}
+                    onChange={handleChange}
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
                   <label
@@ -115,6 +118,7 @@ export default function UserForm({ addContact }) {
               id="remember"
               type="checkbox"
               value=""
+              onChange={handleChange}
               className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
               required
             />
