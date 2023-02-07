@@ -24,8 +24,7 @@ function App() {
     let ab = list.map(t => {
        return t.id == todo.id ? {...t, completed: !todo.completed} : {...t};
      });
-
-     console.log(ab);
+     
      setTodoList(ab);
    }
 
@@ -48,7 +47,8 @@ function App() {
 
   return (
     <div className="App">
-      <TodoListJSON data={list} handleToggle = {handleAction} handleDelete = {handleDelete} handleAdd = {handleAdd}/>
+      {/* <TodoListJSON data={list} handleToggle = {handleAction} handleDelete = {handleDelete} handleAdd = {handleAdd}/> */}
+      <TodoList />
       {/* <UserForm addContact={addContact} />
       <ContactList contacts={contacts} />
       <Product

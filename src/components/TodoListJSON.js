@@ -17,6 +17,7 @@ export default function TodoListJSON({
       title: event.target.value,
       completed: false,
     });
+    console.log("new todo", addTodo);
   };
 
   return (
@@ -28,7 +29,7 @@ export default function TodoListJSON({
           </h1>
         </div>
         <div>
-          <form action="#" className="flex justify-center">
+          <div className="flex justify-center">
             <input
               className="bg-orange-100 px-3 py-2 rounded-l-full placeholder-orange-400"
               type="text"
@@ -56,7 +57,7 @@ export default function TodoListJSON({
                 />
               </svg>
             </button>
-          </form>
+          </div>
         </div>
         <div className="bg-white mt-5 p-4 my-4 rounded-lg shadow-lg w-full max-w-3xl overflow-auto">
           <div>
@@ -87,52 +88,53 @@ export default function TodoListJSON({
               </thead>
               <tbody className="mt-1">
                 {data.map((todo) => {
-                  return (
-                    <tr className="odd: bg-orange-100 even:bg-orange-50">
-                      <td>{todo.id}</td>
-                      <td>
-                        <p
-                          className={
-                            todo.completed ? "line-through text-left" : "no-underline text-left"
-                          }
-                        >
-                          {todo.title}
-                        </p>
-                      </td>
-                      <td>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                          <input
-                            name="completed"
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={handleToggle(todo)}
-                            className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                          />
-                        </label>
-                      </td>
-                      <td>
-                        <button
-                          className="text-orange-600"
-                          onClick={handleDelete(todo)}
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                  if (todo.id != null)
+                    return (
+                      <tr className="odd: bg-orange-100 even:bg-orange-50">
+                        <td>{todo.id}</td>
+                        <td>
+                          <p
+                            className={
+                              todo.completed ? "line-through text-left" : "no-underline text-left"
+                            }
                           >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            {todo.title}
+                          </p>
+                        </td>
+                        <td>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              name="completed"
+                              type="checkbox"
+                              checked={todo.completed}
+                              onChange={handleToggle(todo)}
+                              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                             />
-                          </svg>
-                        </button>
-                      </td>
-                    </tr>
-                  );
+                          </label>
+                        </td>
+                        <td>
+                          <button
+                            className="text-orange-600"
+                            onClick={handleDelete(todo)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                stroke-linejoin="round"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                              />
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    );
                 })}
               </tbody>
             </table>
