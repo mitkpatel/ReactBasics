@@ -4,6 +4,7 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState('');
   const [message, setMessage] = useState('');
+  let status = true;
   let completedTask = 0;
   let incompletedTask = 0;
 
@@ -25,15 +26,20 @@ export default function TodoList() {
     if(todo.length > 0) {
       todos.map(t => {
         if(t.title == todo) {
+          status = false;
           setMessage("The task is already there in todo list at task id " + t.id);
         }
       });
+    }
+    else {
+      status = false;
+      setMessage("Please enter valid todo first!");
+    }
+    
+    if (status) {
       setTodos([...todos, {"id": todos.length + 1, "title": todo, "completed": false }]);
       setTodo('');
       setMessage('');
-    }
-    else {
-      setMessage("Please enter valid todo first!");
     }
   }
 
