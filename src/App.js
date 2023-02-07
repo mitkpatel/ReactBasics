@@ -5,20 +5,50 @@ import UserForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import { useState } from 'react';
 import TodoList from './components/TodoList';
+import TodoListJSON from './components/TodoListJSON';
+import todoList from './assets/todo';
 
 function App() {
 
   // here we create an array state to store the contact form data
   const [contacts, updateContacts] = useState([]);
+  const [list, setTodoList] = useState(todoList);
 
   const addContact = (contactInfo) => {
     updateContacts([...contacts, contactInfo]);
   };
   console.log(contacts)
 
+  const handleAction = (todo) => (e) => {
+    console.log("todo", e.target.value);
+    let ab = list.map(t => {
+       return t.id == todo.id ? {...t, completed: !todo.completed} : {...t};
+     });
+
+     console.log(ab);
+     setTodoList(ab);
+   }
+
+   const handleDelete = (todo) => (e) => {
+    console.log("delete", todo);
+    let ab = list.map(t => {
+      return t.id == todo.id ? {} : {...t}
+    })
+
+    setTodoList(ab);
+   }
+
+   const handleAdd = (todo) => (e) => {
+    console.log("add", todo);
+
+    let ab = [...list];
+    ab = [...ab, todo];
+    setTodoList(ab);
+   }
+
   return (
     <div className="App">
-      <TodoList />
+      <TodoListJSON data={list} handleToggle = {handleAction} handleDelete = {handleDelete} handleAdd = {handleAdd}/>
       {/* <UserForm addContact={addContact} />
       <ContactList contacts={contacts} />
       <Product
