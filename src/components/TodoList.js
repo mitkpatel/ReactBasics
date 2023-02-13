@@ -92,7 +92,7 @@ export default function TodoList() {
       <div className="bg-orange-200 flex flex-col justify-center items-center h-screen">
         <div className="w-full max-w-2xl" id="app">
           <h1 className="text-3xl text-center font-bold mb-3 uppercase">
-            Todo List From Fetch API
+            Todo List From Fetch API Testing
           </h1>
         </div>
         <div>
