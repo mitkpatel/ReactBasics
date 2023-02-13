@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function TodoListJSON({
   data,
@@ -65,7 +65,7 @@ export default function TodoListJSON({
               Todo List Details
             </h1>
             <small className="text-sm inline-block mt-0">
-              {data.map((todo) => {
+              {data.map((todo) => () => { 
                 if (todo.completed) {
                   completedTask += 1;
                 } else {
@@ -87,7 +87,7 @@ export default function TodoListJSON({
                 </tr>
               </thead>
               <tbody className="mt-1">
-                {data.map((todo) => {
+                {data.map((todo) => () => {
                   if (todo.id != null)
                     return (
                       <tr className="odd: bg-orange-100 even:bg-orange-50">
